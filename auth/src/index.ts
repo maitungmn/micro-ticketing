@@ -1,6 +1,8 @@
 import express from 'express'
 import 'express-async-errors'
 import {json} from 'body-parser'
+import mongoose from "mongoose"
+import * as dotenv from "dotenv";
 
 import {currentUserRouter} from "./routes/current-user"
 import {signinRouter} from "./routes/signin";
@@ -9,6 +11,8 @@ import {signoutRouter} from "./routes/signout";
 
 import {errorHandler} from "./middlewares/error-handler";
 import {NotFoundError} from "./errors/not-found-error";
+
+dotenv.config()
 
 const app = express()
 app.use(json())
@@ -26,6 +30,21 @@ app.all('*', async (req, res) => {
 
 app.use(errorHandler)
 
-app.listen(port, () => {
-  console.log('Listening on port', port)
-})
+const start = async () => {
+  try {
+    await mongoose.connect(`mongodb://${process.env.HOST_MONGO}:27017/auth`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
+    console.log('Connected to MongoDb')
+  } catch (e) {
+    console.error(e)
+  }
+  app.listen(port, () => {
+    console.log('Listening on port', port)
+  })
+}
+
+start()
+

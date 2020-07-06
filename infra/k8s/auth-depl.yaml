@@ -18,6 +18,9 @@ spec:
       containers:
         - name: auth
           image: maitung/ticketing-auth
+          env:
+            - name: HOST_MONGO
+              value: auth-mongo-srv
 ---
 apiVersion: v1
 kind: Service
