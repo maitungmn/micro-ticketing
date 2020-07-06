@@ -3,3 +3,4 @@ node_modules/
 .DS_S*
 yarn.lock
 package-lock.json
+.env
