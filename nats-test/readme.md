@@ -1,0 +1,1 @@
+k port-forward [nat_pod] 4222:4222

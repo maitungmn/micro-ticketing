@@ -8,3 +8,6 @@ $ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=sdsad
 + Setup Host with: ticketing.dev
 
 + Type: 'thisisunsafe' on Chrome 
+
++ NATs streaming ARGs:
+https://docs.nats.io/nats-streaming-server/configuring/cmdline
