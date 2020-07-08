@@ -3,12 +3,12 @@ import 'express-async-errors'
 import {json} from 'body-parser'
 import cookieSession from "cookie-session";
 
-import {currentUserRouter} from "./routes/current-user"
-import {signinRouter} from "./routes/signin";
-import {signupRouter} from "./routes/signup";
-import {signoutRouter} from "./routes/signout";
+import {errorHandler, NotFoundError, currentUser} from "@mttickets/common";
 
-import {errorHandler, NotFoundError} from "@mttickets/common";
+import {createTicketRouter} from "./routes/new";
+import {showTicketRouter} from "./routes/show";
+import {indexTicketRouter} from "./routes";
+import {updateTicketRouter} from "./routes/update";
 
 const app = express()
 app.set('trust proxy', true)
@@ -19,11 +19,12 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 )
+app.use(currentUser)
 
-app.use(currentUserRouter)
-app.use(signinRouter)
-app.use(signupRouter)
-app.use(signoutRouter)
+app.use(createTicketRouter)
+app.use(showTicketRouter)
+app.use(indexTicketRouter)
+app.use(updateTicketRouter)
 
 app.all('*', async (req, res) => {
   throw new NotFoundError()

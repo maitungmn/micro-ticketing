@@ -24,6 +24,14 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+    - image: maitung/ticketing-tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
 
 #build:
 #googleCloudBuild:
