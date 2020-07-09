@@ -11,3 +11,4 @@ $ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=sdsad
 
 + NATs streaming ARGs:
 https://docs.nats.io/nats-streaming-server/configuring/cmdline
+http://localhost:8222/streaming
