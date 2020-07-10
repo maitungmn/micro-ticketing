@@ -2,6 +2,8 @@ import mongoose from "mongoose"
 import * as dotenv from "dotenv"
 import {app} from "./app"
 import {natsWrapper} from "./nats-wrapper";
+import {TicketCreatedListener} from "./events/listeners/ticket-created-listener";
+import {TicketUpdatedListener} from "./events/listeners/ticket-updated-listener";
 
 dotenv.config()
 const port = 3000
@@ -37,6 +39,9 @@ const start = async () => {
 
     process.on('SIGINT', () => natsWrapper.client.close())
     process.on('SIGTERM', () => natsWrapper.client.close())
+
+    new TicketCreatedListener(natsWrapper.client).listen()
+    new TicketUpdatedListener(natsWrapper.client).listen()
 
     await mongoose.connect(process.env.HOST_MONGO, {
       useNewUrlParser: true,
