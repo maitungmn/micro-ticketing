@@ -45,6 +45,16 @@ const ticketSchema = new mongoose.Schema({
 ticketSchema.set('versionKey', 'version')
 ticketSchema.plugin(updateIfCurrentPlugin)
 
+// alternate "updateIfCurrentPlugin"
+// ticketSchema.pre('save', function (done) {
+//   // @ts-ignore
+//   this.$where = {
+//     version: this.get('version') - 1
+//   }
+//
+//   done()
+// })
+
 ticketSchema.statics.findByEvent = (event: { id: string, version: number }) => {
   return Ticket.findOne({
     _id: event.id,
