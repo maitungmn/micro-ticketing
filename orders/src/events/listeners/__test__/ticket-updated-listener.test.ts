@@ -42,7 +42,7 @@ it('finds, updates, and saves a ticket', async () => {
 
   await listener.onMessage(data, msg)
 
-  const updatedTicket = await Ticket.findById(ticket.id)
+  const updatedTicket = await Ticket.findById(ticket._id)
 
   expect(updatedTicket!.title).toEqual(data.title)
   expect(updatedTicket!.price).toEqual(data.price)
@@ -64,7 +64,8 @@ it('does not call ack if the event has a skipped version number', async () => {
 
   try {
     await listener.onMessage(data, msg)
-  } catch (e) {}
+  } catch (e) {
+  }
 
   expect(msg.ack).not.toHaveBeenCalled()
 })

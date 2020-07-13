@@ -1,4 +1,4 @@
-import mongoose, {version} from "mongoose"
+import mongoose from "mongoose"
 import {Order} from "./order";
 import {OrderStatus} from "@mttickets/common";
 import {updateIfCurrentPlugin} from "mongoose-update-if-current";

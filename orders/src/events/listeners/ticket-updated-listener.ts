@@ -11,7 +11,7 @@ export class TicketUpdatedListener extends Listener<TicketUpdatedEvent> {
     const dataModified: TicketUpdatedEvent['data'] = {
       id: data.id,
       // @ts-ignore
-      ...data._doc,
+      ...data._doc || data,
     }
     // @ts-ignore
     delete dataModified._id
@@ -22,8 +22,7 @@ export class TicketUpdatedListener extends Listener<TicketUpdatedEvent> {
       throw new Error('Ticket not found')
     }
 
-    // @ts-ignore
-    const {title, price} = data._doc
+    const {title, price} = dataModified
     ticket.set({title, price})
     await ticket.save()
 
