@@ -2,8 +2,9 @@
 + Need to run these cmds:
 https://kubernetes.github.io/ingress-nginx/deploy/
 
-+ Create secret k8s:
++ Create secrets:
 $ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=sdsad
+$ kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=[secret-stripe-key]
 
 + Setup Host with: ticketing.dev
 
