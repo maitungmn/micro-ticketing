@@ -1,5 +1,5 @@
 import express, {Request, Response} from "express";
-import mongoose, {version} from "mongoose"
+import mongoose from "mongoose"
 import {BadRequestError, NotFoundError, OrderStatus, requiredAuth, validateRequest} from "@mttickets/common";
 import {BaseRoute} from "./base-route";
 import {body} from "express-validator";
