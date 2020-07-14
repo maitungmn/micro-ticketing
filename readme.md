@@ -17,3 +17,6 @@ http://localhost:8222/streaming
 + To fix "Unable to find ..." from ts-node-dev:
 remove / add attribute: --poll
 ex: ts-node-dev src/index.ts
+
++ Stripe testing cards:
+https://stripe.com/docs/testing
